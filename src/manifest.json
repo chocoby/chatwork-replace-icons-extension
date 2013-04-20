@@ -1,0 +1,19 @@
+{
+  "name": "ChatWork Replace Icons Extension",
+  "description": "Replace user icons in ChatWork.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "permissions": ["http://*/*", "https://*/*"],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["js/jquery-2.0.0.min.js", "js/background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.chatwork.com/*"],
+      "js": ["js/contentscript.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+*.pem
+/chatwork-replace-icons-extension
+src/package
+src/node_modules
