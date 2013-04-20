@@ -9,14 +9,14 @@
       var options;
 
       options = response.options;
-      return $("#api_endpoint").val(options.apiEndpoint);
+      return $("#api-endpoint").val(options.apiEndpoint);
     });
   };
 
   saveOptions = function() {
     var apiEndpoint, options;
 
-    apiEndpoint = $("#api_endpoint").val();
+    apiEndpoint = $("#api-endpoint").val();
     options = {
       apiEndpoint: apiEndpoint
     };

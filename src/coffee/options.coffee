@@ -1,10 +1,10 @@
 loadOptions = ->
   chrome.runtime.sendMessage { mode: "loadOptions" }, (response) ->
     options = response.options
-    $("#api_endpoint").val options.apiEndpoint
+    $("#api-endpoint").val options.apiEndpoint
 
 saveOptions = ->
-  apiEndpoint = $("#api_endpoint").val()
+  apiEndpoint = $("#api-endpoint").val()
   options = {
     apiEndpoint: apiEndpoint,
   }
