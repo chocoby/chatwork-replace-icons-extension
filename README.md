@@ -36,6 +36,11 @@ ChatWork のユーザーアイコンを置換する Google Chrome 用の extensi
 
 ## 変更履歴
 
+### [v0.0.2](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.2) (2013/04/20)
+
+* 参照する API のフィールドを変更
+* オプションページの HTML を修正
+
 ### [v0.0.1](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.1) (2013/04/20)
 
 * 初期リリース
