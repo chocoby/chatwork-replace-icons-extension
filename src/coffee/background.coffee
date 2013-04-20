@@ -33,7 +33,6 @@ saveOptions = (options) ->
 loadOptions = ->
   JSON.parse(localStorage.getItem "options")
 
-# TODO: change method name!
 getIconList = ->
   dfd = $.Deferred()
 
@@ -44,7 +43,7 @@ getIconList = ->
       iconList = {}
 
       $.each res, (index, icon) ->
-        iconList[icon.class_name] = icon.base64_encoded_data
+        iconList[icon.class_name] = icon.data_uri_encoded_data
 
       dfd.resolve(iconList)
   else

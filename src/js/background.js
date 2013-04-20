@@ -69,7 +69,7 @@
 
         iconList = {};
         $.each(res, function(index, icon) {
-          return iconList[icon.class_name] = icon.base64_encoded_data;
+          return iconList[icon.class_name] = icon.data_uri_encoded_data;
         });
         return dfd.resolve(iconList);
       });
