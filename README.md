@@ -5,6 +5,7 @@ ChatWork のユーザーアイコンを置換する Google Chrome 用の extensi
 ## 概要
 
 アイコンを管理する API である [Chatworker](https://github.com/asonas/chatworker) に、置換したいユーザーのクラス名と画像を、あらかじめ登録しておきます。
+
 この extension から Chatworker API にアクセスし、クラス名と画像のリストを取得することで、ChatWork 内のユーザーアイコンを置換します。
 
 ## インストール
@@ -23,6 +24,7 @@ ChatWork のユーザーアイコンを置換する Google Chrome 用の extensi
 ## アップデート
 
 「インストール」と同じ手順でアップデートを行なってください。
+
 オプションを再び設定する必要はありません。
 
 ## 注意事項
@@ -52,7 +54,7 @@ CoffeeScript から JavaScript に変換:
 
 ```
 # repo root directory
-% sh package.sh
+% sh src/package.sh
 ```
 
 ## GitHub
