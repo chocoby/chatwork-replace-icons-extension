@@ -34,8 +34,7 @@ ChatWork の仕様変更による対応で、バージョンごとの互換性�
 
 |日付|バージョン|変更内容|
 |----|----------|--------|
-|最新版|master 、またはそれ以降のタグ||
-|2013/05/08|[v0.0.3](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.3)|全体的に変更された|
+|2013/05/08|master/v0.0.3 以降のタグ|全体的に変更された|
 |～2013/05/07|[v0.0.2](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.2)||
 
 ## 注意事項
