@@ -1,24 +1,24 @@
 //@ sourceMappingURL=background.map
 (function() {
-  var getIconList, getXpathExpression, loadOptions, saveOptions;
+  var getUserList, getXpathExpression, loadOptions, saveOptions;
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    var dfd, iconList, options, xpathExp;
+    var dfd, options, userList, xpathExp;
 
     switch (request.mode) {
       case "initialize":
-        iconList = {};
+        userList = {};
         xpathExp = "";
         dfd = $.Deferred();
-        dfd.then(getIconList().then(function(list) {
-          iconList = list;
-          return getXpathExpression(iconList);
+        dfd.then(getUserList().then(function(list) {
+          userList = list;
+          return getXpathExpression(userList);
         }).then(function(exp) {
           return xpathExp = exp;
         }).done(function() {
           return sendResponse({
             status: "success",
-            iconList: iconList,
+            userList: userList,
             xpathExp: xpathExp
           });
         }).fail(function(message) {
@@ -58,20 +58,20 @@
     return JSON.parse(localStorage.getItem("options"));
   };
 
-  getIconList = function() {
+  getUserList = function() {
     var dfd, options;
 
     dfd = $.Deferred();
     options = loadOptions();
     if (options.apiEndpoint) {
       $.getJSON(options.apiEndpoint, function(res) {
-        var iconList;
+        var userList;
 
-        iconList = {};
-        $.each(res, function(index, icon) {
-          return iconList[icon.class_name] = icon.data_uri_encoded_data;
+        userList = {};
+        $.each(res, function(index, user) {
+          return userList[user.class_name] = user.data_uri_encoded_data;
         });
-        return dfd.resolve(iconList);
+        return dfd.resolve(userList);
       });
     } else {
       dfd.reject("API Endpoint is empty.");
@@ -79,18 +79,18 @@
     return dfd.promise();
   };
 
-  getXpathExpression = function(iconList) {
+  getXpathExpression = function(userList) {
     var dfd, i, xpath;
 
     dfd = $.Deferred();
     xpath = new String();
     xpath += './/img[';
     i = 0;
-    $.each(iconList, function(iconClass) {
+    $.each(userList, function(userId) {
       if (i !== 0) {
         xpath += ' or ';
       }
-      xpath += 'contains(concat(" ", @class, " "), " ' + iconClass + ' ")';
+      xpath += 'contains(concat(" ", @data-aid, " "), " ' + userId + ' ")';
       return i++;
     });
     xpath += ']';

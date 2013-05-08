@@ -1,5 +1,5 @@
 xpathExp = ""
-iconList = {}
+userList = {}
 
 timer = 0
 handleDOM = ->
@@ -20,20 +20,20 @@ handleDOM = ->
   null
 
 replaceIcon = (icon) ->
-  classNameMatch = icon.className.match(/cw_a[0-9]+/)
-  return unless classNameMatch
+  userIdMatch = icon.dataset.aid.match(/[0-9]+/)
+  return unless userIdMatch
 
-  iconClass = classNameMatch[0]
+  userId = userIdMatch[0]
 
-  if iconList[iconClass]
-    icon.setAttribute("src", iconList[iconClass])
+  if userList[userId]
+    icon.setAttribute("src", userList[userId])
 
   null
 
 chrome.runtime.sendMessage { mode: "initialize" }, (response) ->
   if response.status == "success"
     xpathExp = response.xpathExp
-    iconList = response.iconList
+    userList = response.userList
 
     window.addEventListener("DOMNodeInserted", handleDOM, false)
   else

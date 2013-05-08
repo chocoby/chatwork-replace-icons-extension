@@ -1,10 +1,10 @@
 //@ sourceMappingURL=contentscript.map
 (function() {
-  var handleDOM, iconList, replaceIcon, timer, xpathExp;
+  var handleDOM, replaceIcon, timer, userList, xpathExp;
 
   xpathExp = "";
 
-  iconList = {};
+  userList = {};
 
   timer = 0;
 
@@ -28,15 +28,15 @@
   };
 
   replaceIcon = function(icon) {
-    var classNameMatch, iconClass;
+    var userId, userIdMatch;
 
-    classNameMatch = icon.className.match(/cw_a[0-9]+/);
-    if (!classNameMatch) {
+    userIdMatch = icon.dataset.aid.match(/[0-9]+/);
+    if (!userIdMatch) {
       return;
     }
-    iconClass = classNameMatch[0];
-    if (iconList[iconClass]) {
-      icon.setAttribute("src", iconList[iconClass]);
+    userId = userIdMatch[0];
+    if (userList[userId]) {
+      icon.setAttribute("src", userList[userId]);
     }
     return null;
   };
@@ -46,7 +46,7 @@
   }, function(response) {
     if (response.status === "success") {
       xpathExp = response.xpathExp;
-      iconList = response.iconList;
+      userList = response.userList;
       return window.addEventListener("DOMNodeInserted", handleDOM, false);
     } else {
       return console.error("initialize error: " + response.message);

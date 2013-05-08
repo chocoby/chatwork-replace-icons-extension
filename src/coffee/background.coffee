@@ -1,18 +1,18 @@
 chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
   switch request.mode
     when "initialize"
-      iconList = {}
+      userList = {}
       xpathExp = ""
 
       dfd = $.Deferred()
-      dfd.then getIconList()
+      dfd.then getUserList()
       .then (list) ->
-        iconList = list
-        getXpathExpression(iconList)
+        userList = list
+        getXpathExpression(userList)
       .then (exp) ->
         xpathExp = exp
       .done ->
-        sendResponse { status: "success", iconList: iconList, xpathExp: xpathExp }
+        sendResponse { status: "success", userList: userList, xpathExp: xpathExp }
       .fail (message) ->
         sendResponse { status: "failure", message: message }
     when "loadOptions"
@@ -33,35 +33,35 @@ saveOptions = (options) ->
 loadOptions = ->
   JSON.parse(localStorage.getItem "options")
 
-getIconList = ->
+getUserList = ->
   dfd = $.Deferred()
 
   options = loadOptions()
 
   if options.apiEndpoint
     $.getJSON options.apiEndpoint, (res) ->
-      iconList = {}
+      userList = {}
 
-      $.each res, (index, icon) ->
-        iconList[icon.class_name] = icon.data_uri_encoded_data
+      $.each res, (index, user) ->
+        userList[user.class_name] = user.data_uri_encoded_data
 
-      dfd.resolve(iconList)
+      dfd.resolve(userList)
   else
     dfd.reject("API Endpoint is empty.")
 
   dfd.promise()
 
-getXpathExpression = (iconList) ->
+getXpathExpression = (userList) ->
   dfd = $.Deferred()
 
   xpath = new String()
   xpath += './/img['
 
   i = 0
-  $.each iconList, (iconClass) ->
+  $.each userList, (userId) ->
     unless i == 0
       xpath += ' or '
-    xpath += 'contains(concat(" ", @class, " "), " ' + iconClass + ' ")'
+    xpath += 'contains(concat(" ", @data-aid, " "), " ' + userId + ' ")'
 
     i++
 
