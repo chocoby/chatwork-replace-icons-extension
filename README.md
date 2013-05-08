@@ -27,6 +27,17 @@ ChatWork のユーザーアイコンを置換する Google Chrome 用の extensi
 
 オプションを再び設定する必要はありません。
 
+## バージョンごとの互換性
+
+ChatWork の仕様変更による対応で、バージョンごとの互換性が失われる場合があります。
+バージョンごとの対応を、以下の表に記します。お使いの ChatWork に対応したバージョンを使用してください。
+
+|日付|バージョン|変更内容|
+|----|----------|--------|
+|最新版|master 、またはそれ以降のタグ||
+|2013/05/08|[v0.0.3](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.3)|全体的に変更された|
+|～2013/05/07|[v0.0.2](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.2)||
+
 ## 注意事項
 
 * Google Chrome の最新バージョンにて確認を行なっています。
@@ -35,6 +46,10 @@ ChatWork のユーザーアイコンを置換する Google Chrome 用の extensi
 * 一つのアイコンのみ置換したいのであれば [chatwork-replace-icon](https://github.com/chocoby/chatwork-replace-icon) をお勧めします。
 
 ## 変更履歴
+
+### [v0.0.3](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.3) (2013/05/08)
+
+* ChatWork の仕様変更に対応
 
 ### [v0.0.2](https://github.com/chocoby/chatwork-replace-icons-extension/tree/v0.0.2) (2013/04/20)
 
@@ -51,7 +66,7 @@ CoffeeScript から JavaScript に変換:
 
 ```
 % cd src
-% npm install grunt --save-dev
+% npm install --save-dev
 % grunt watch
 ```
 
